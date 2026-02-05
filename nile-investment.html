@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nile Investment - نايل للاستثمار العقاري</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #003D7A;
+            --accent: #FF6B35;
+            --light: #F5F5F5;
+            --dark: #1A1A1A;
+            --border: #E0E0E0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 800;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .top-bar {
+            display: none;
+            justify-content: flex-end;
+            gap: 2rem;
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .top-bar.show {
+            display: flex;
+        }
+
+        .top-bar a {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .top-bar a:hover {
+            color: var(--accent);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+        }
+
+        nav {
+            display: none;
+            gap: 2rem;
+        }
+
+        nav.show {
+            display: flex;
+        }
+
+        nav a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #E55A24;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        .lang-toggle {
+            background: var(--primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            border: none;
+            font-weight: 600;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+
+        .menu-toggle.show {
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://private-us-east-1.manuscdn.com/sessionFile/GqyPaoJhofzmY8b6vtayda/sandbox/JN4bVdsFjOFMqmp3T6qGEn-img-1_1770282382000_na1fn_aGVyby1iYWNrZ3JvdW5k.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 1rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-header .divider {
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            margin: 1rem auto;
+        }
+
+        .section-header p {
+            font-size: 1.125rem;
+            color: #666;
+            max-width: 600px;
+            margin: 1rem auto;
+        }
+
+        /* About Section */
+        #about {
+            background: white;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            text-align: center;
+        }
+
+        .about-content p {
+            font-size: 1.125rem;
+            color: #555;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .feature {
+            text-align: center;
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 107, 53, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+        }
+
+        .feature h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
+        }
+
+        .feature p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .why-choose {
+            background: var(--light);
+            padding: 2rem;
+            border-radius: 0.5rem;
+        }
+
+        .why-choose h3 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-size: 1.75rem;
+        }
+
+        .why-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .why-item {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .why-item::before {
+            content: "✓";
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        /* Services Section */
+        #services {
+            background: var(--light);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: box-shadow 0.3s;
+        }
+
+        .service-card:hover {
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        .service-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .service-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Contact Section */
+        #contact {
+            background: white;
+        }
+
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-method {
+            background: var(--light);
+            padding: 2rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            text-decoration: none;
+            color: inherit;
+            transition: box-shadow 0.3s;
+        }
+
+        .contact-method:hover {
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .contact-method h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-method p {
+            color: #666;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--light);
+            padding: 2rem;
+            border-radius: 0.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-btn {
+            width: 50px;
+            height: 50px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.25rem;
+            transition: background 0.3s;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .social-btn:hover {
+            background: #E55A24;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 3rem 1rem 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .footer-section p {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.95rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 2rem;
+            text-align: center;
+            color: rgba(255,255,255,0.8);
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .top-bar {
+                display: none !important;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            nav {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 1rem;
+                gap: 1rem;
+                border-bottom: 1px solid var(--border);
+            }
+
+            nav.show {
+                display: flex;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .hero-buttons .btn {
+                width: 100%;
+            }
+
+            section {
+                padding: 3rem 1rem;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="top-bar show">
+            <a href="mailto:nile.investmentrealestate@gmail.com">📧 nile.investmentrealestate@gmail.com</a>
+            <a href="tel:+201044095564">📱 +20 104 409 5564</a>
+            <a href="https://wa.me/+201044095564" target="_blank">💬 واتساب</a>
+        </div>
+        <div class="header-content">
+            <div class="logo">
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663333376195/cfTCuLfGhIAzFUNe.png" alt="Nile Investment">
+            </div>
+            <nav id="nav">
+                <a href="#home" onclick="scrollToSection('home')">الرئيسية</a>
+                <a href="#about" onclick="scrollToSection('about')">عن الشركة</a>
+                <a href="#services" onclick="scrollToSection('services')">الخدمات</a>
+                <a href="#contact" onclick="scrollToSection('contact')">اتصل بنا</a>
+            </nav>
+            <div style="display: flex; gap: 1rem; align-items: center;">
+                <button class="lang-toggle" onclick="toggleLanguage()">EN</button>
+                <a href="https://wa.me/+201044095564" target="_blank" class="btn btn-primary" style="display: none;" id="cta-btn">تواصل معنا</a>
+                <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div>
+                <h1 id="hero-title">نايل للاستثمار العقاري</h1>
+                <p id="hero-subtitle">شريكك الموثوق في عالم الاستثمار العقاري</p>
+                <div class="hero-buttons">
+                    <a href="https://wa.me/+201044095564" target="_blank" class="btn btn-primary" id="hero-btn1">تواصل معنا الآن</a>
+                    <a href="#about" class="btn btn-secondary" id="hero-btn2">اعرف المزيد</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 id="about-title">عن نايل للاستثمار</h2>
+                <div class="divider"></div>
+            </div>
+            <div class="about-content">
+                <p id="about-text1">نحن متخصصون في تسويق العقارات والاستثمارات العقارية. نقدم استشارات احترافية للعملاء الراغبين في الاستثمار في المشاريع العقارية المختلفة.</p>
+                <p id="about-text2">فريقنا يعمل بجد لضمان حصول عملائنا على أفضل الفرص الاستثمارية وأفضل العروض في السوق العقاري.</p>
+            </div>
+
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">📈</div>
+                    <h3 id="feature1-title">خبرة متخصصة</h3>
+                    <p id="feature1-desc">متخصصون في تسويق العقارات والاستثمارات العقارية</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">👥</div>
+                    <h3 id="feature2-title">فريق محترف</h3>
+                    <p id="feature2-desc">فريق من المسوقين العقاريين ذوي الخبرة</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🏆</div>
+                    <h3 id="feature3-title">جودة الخدمة</h3>
+                    <p id="feature3-desc">التزام كامل بتقديم أفضل الخدمات للعملاء</p>
+                </div>
+            </div>
+
+            <div class="why-choose">
+                <h3 id="why-title">لماذا تختار نايل؟</h3>
+                <div class="why-list">
+                    <div class="why-item"><span id="why1">فريق متخصص وذو خبرة عالية</span></div>
+                    <div class="why-item"><span id="why2">استشارات احترافية وموثوقة</span></div>
+                    <div class="why-item"><span id="why3">تواصل مستمر مع العملاء</span></div>
+                    <div class="why-item"><span id="why4">معرفة عميقة بسوق العقارات</span></div>
+                    <div class="why-item"><span id="why5">عروض حصرية وفرص فريدة</span></div>
+                    <div class="why-item"><span id="why6">خدمة عملاء متميزة</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 id="services-title">خدماتنا</h2>
+                <div class="divider"></div>
+                <p id="services-subtitle">نقدم مجموعة شاملة من الخدمات لدعم استثماراتك العقارية</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div style="font-size: 2rem; margin-bottom: 1rem;">🔍</div>
+                    <h3 id="service1-title">البحث عن الفرص</h3>
+                    <p id="service1-desc">نساعدك في البحث عن أفضل الفرص الاستثمارية في السوق العقاري</p>
+                </div>
+                <div class="service-card">
+                    <div style="font-size: 2rem; margin-bottom: 1rem;">📋</div>
+                    <h3 id="service2-title">الاستشارات</h3>
+                    <p id="service2-desc">نقدم استشارات احترافية حول الاستثمارات العقارية المختلفة</p>
+                </div>
+                <div class="service-card">
+                    <div style="font-size: 2rem; margin-bottom: 1rem;">💼</div>
+                    <h3 id="service3-title">المتابعة</h3>
+                    <p id="service3-desc">متابعة شاملة لمشاريعك الاستثمارية من البداية إلى النهاية</p>
+                </div>
+                <div class="service-card">
+                    <div style="font-size: 2rem; margin-bottom: 1rem;">🤝</div>
+                    <h3 id="service4-title">التفاوض</h3>
+                    <p id="service4-desc">نتولى التفاوض نيابة عنك للحصول على أفضل الشروط</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 id="contact-title">تواصل معنا</h2>
+                <div class="divider"></div>
+                <p id="contact-subtitle">نحن هنا للإجابة على جميع استفساراتك</p>
+            </div>
+
+            <div class="contact-methods">
+                <a href="tel:+201044095564" class="contact-method">
+                    <div style="font-size: 2rem; margin-bottom: 1rem;">📱</div>
+                    <h3 id="contact-phone-title">الهاتف</h3>
+                    <p>+20 104 409 5564</p>
+                </a>
+                <a href="mailto:nile.investmentrealestate@gmail.com" class="contact-method">
+                    <div style="font-size: 2rem; margin-bottom: 1rem;">📧</div>
+                    <h3 id="contact-email-title">البريد الإلكتروني</h3>
+                    <p>nile.investmentrealestate@gmail.com</p>
+                </a>
+                <a href="https://wa.me/+201044095564" target="_blank" class="contact-method">
+                    <div style="font-size: 2rem; margin-bottom: 1rem;">💬</div>
+                    <h3 id="contact-whatsapp-title">واتساب</h3>
+                    <p>+20 104 409 5564</p>
+                </a>
+            </div>
+
+            <div class="contact-form">
+                <h3 id="form-title" style="text-align: center; margin-bottom: 1.5rem; color: var(--primary);">أرسل لنا رسالة</h3>
+                <form onsubmit="handleSubmit(event)">
+                    <div class="form-group">
+                        <label for="name" id="form-name-label">الاسم *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" id="form-email-label">البريد الإلكتروني *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone" id="form-phone-label">رقم الهاتف *</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" id="form-message-label">الرسالة</label>
+                        <textarea id="message" name="message" rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem;" id="form-submit">إرسال الرسالة</button>
+                </form>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <h3 id="social-title" style="color: var(--primary); margin-bottom: 1.5rem;">تابعنا على وسائل التواصل</h3>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/nileinvestment1" target="_blank" class="social-btn" title="Facebook">f</a>
+                    <a href="https://www.instagram.com/nileinvestment1" target="_blank" class="social-btn" title="Instagram">📷</a>
+                    <a href="https://www.linkedin.com/in/nile-investment/" target="_blank" class="social-btn" title="LinkedIn">in</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 id="footer-about-title">نايل للاستثمار العقاري</h3>
+                    <p id="footer-about-text">متخصصون في تسويق العقارات والاستثمارات العقارية. نقدم استشارات احترافية وخدمات متميزة.</p>
+                </div>
+                <div class="footer-section">
+                    <h3 id="footer-links-title">روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#home" id="footer-link1">الرئيسية</a></li>
+                        <li><a href="#about" id="footer-link2">عن الشركة</a></li>
+                        <li><a href="#services" id="footer-link3">خدماتنا</a></li>
+                        <li><a href="#contact" id="footer-link4">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 id="footer-contact-title">معلومات التواصل</h3>
+                    <ul>
+                        <li><a href="tel:+201044095564">📱 +20 104 409 5564</a></li>
+                        <li><a href="mailto:nile.investmentrealestate@gmail.com">📧 nile.investmentrealestate@gmail.com</a></li>
+                        <li><a href="https://wa.me/+201044095564" target="_blank">💬 واتساب</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p id="footer-copyright">&copy; 2024 نايل للاستثمار العقاري. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Language Data
+        const translations = {
+            ar: {
+                'hero-title': 'نايل للاستثمار العقاري',
+                'hero-subtitle': 'شريكك الموثوق في عالم الاستثمار العقاري',
+                'hero-btn1': 'تواصل معنا الآن',
+                'hero-btn2': 'اعرف المزيد',
+                'about-title': 'عن نايل للاستثمار',
+                'about-text1': 'نحن متخصصون في تسويق العقارات والاستثمارات العقارية. نقدم استشارات احترافية للعملاء الراغبين في الاستثمار في المشاريع العقارية المختلفة.',
+                'about-text2': 'فريقنا يعمل بجد لضمان حصول عملائنا على أفضل الفرص الاستثمارية وأفضل العروض في السوق العقاري.',
+                'feature1-title': 'خبرة متخصصة',
+                'feature1-desc': 'متخصصون في تسويق العقارات والاستثمارات العقارية',
+                'feature2-title': 'فريق محترف',
+                'feature2-desc': 'فريق من المسوقين العقاريين ذوي الخبرة',
+                'feature3-title': 'جودة الخدمة',
+                'feature3-desc': 'التزام كامل بتقديم أفضل الخدمات للعملاء',
+                'why-title': 'لماذا تختار نايل؟',
+                'why1': 'فريق متخصص وذو خبرة عالية',
+                'why2': 'استشارات احترافية وموثوقة',
+                'why3': 'تواصل مستمر مع العملاء',
+                'why4': 'معرفة عميقة بسوق العقارات',
+                'why5': 'عروض حصرية وفرص فريدة',
+                'why6': 'خدمة عملاء متميزة',
+                'services-title': 'خدماتنا',
+                'services-subtitle': 'نقدم مجموعة شاملة من الخدمات لدعم استثماراتك العقارية',
+                'service1-title': 'البحث عن الفرص',
+                'service1-desc': 'نساعدك في البحث عن أفضل الفرص الاستثمارية في السوق العقاري',
+                'service2-title': 'الاستشارات',
+                'service2-desc': 'نقدم استشارات احترافية حول الاستثمارات العقارية المختلفة',
+                'service3-title': 'المتابعة',
+                'service3-desc': 'متابعة شاملة لمشاريعك الاستثمارية من البداية إلى النهاية',
+                'service4-title': 'التفاوض',
+                'service4-desc': 'نتولى التفاوض نيابة عنك للحصول على أفضل الشروط',
+                'contact-title': 'تواصل معنا',
+                'contact-subtitle': 'نحن هنا للإجابة على جميع استفساراتك',
+                'contact-phone-title': 'الهاتف',
+                'contact-email-title': 'البريد الإلكتروني',
+                'contact-whatsapp-title': 'واتساب',
+                'form-title': 'أرسل لنا رسالة',
+                'form-name-label': 'الاسم *',
+                'form-email-label': 'البريد الإلكتروني *',
+                'form-phone-label': 'رقم الهاتف *',
+                'form-message-label': 'الرسالة',
+                'form-submit': 'إرسال الرسالة',
+                'social-title': 'تابعنا على وسائل التواصل',
+                'footer-about-title': 'نايل للاستثمار العقاري',
+                'footer-about-text': 'متخصصون في تسويق العقارات والاستثمارات العقارية. نقدم استشارات احترافية وخدمات متميزة.',
+                'footer-links-title': 'روابط سريعة',
+                'footer-link1': 'الرئيسية',
+                'footer-link2': 'عن الشركة',
+                'footer-link3': 'خدماتنا',
+                'footer-link4': 'اتصل بنا',
+                'footer-contact-title': 'معلومات التواصل',
+                'footer-copyright': '&copy; 2024 نايل للاستثمار العقاري. جميع الحقوق محفوظة.',
+                'cta-btn': 'تواصل معنا'
+            },
+            en: {
+                'hero-title': 'Nile Investment',
+                'hero-subtitle': 'Your trusted partner in real estate investment',
+                'hero-btn1': 'Contact Us Now',
+                'hero-btn2': 'Learn More',
+                'about-title': 'About Nile Investment',
+                'about-text1': 'We specialize in real estate marketing and investment. We provide professional consultations to clients who want to invest in various real estate projects.',
+                'about-text2': 'Our team works hard to ensure that our clients get the best investment opportunities and the best offers in the real estate market.',
+                'feature1-title': 'Specialized Experience',
+                'feature1-desc': 'Specialists in real estate marketing and investment',
+                'feature2-title': 'Professional Team',
+                'feature2-desc': 'Team of experienced real estate marketers',
+                'feature3-title': 'Service Quality',
+                'feature3-desc': 'Full commitment to providing the best services to clients',
+                'why-title': 'Why Choose Nile?',
+                'why1': 'Specialized team with high experience',
+                'why2': 'Professional and reliable consultations',
+                'why3': 'Continuous communication with clients',
+                'why4': 'Deep knowledge of the real estate market',
+                'why5': 'Exclusive offers and unique opportunities',
+                'why6': 'Excellent customer service',
+                'services-title': 'Our Services',
+                'services-subtitle': 'We provide a comprehensive set of services to support your real estate investments',
+                'service1-title': 'Opportunity Search',
+                'service1-desc': 'We help you find the best investment opportunities in the real estate market',
+                'service2-title': 'Consultations',
+                'service2-desc': 'We provide professional consultations on various real estate investments',
+                'service3-title': 'Follow-up',
+                'service3-desc': 'Comprehensive follow-up of your investment projects from start to finish',
+                'service4-title': 'Negotiation',
+                'service4-desc': 'We handle negotiations on your behalf to get the best terms',
+                'contact-title': 'Contact Us',
+                'contact-subtitle': 'We are here to answer all your inquiries',
+                'contact-phone-title': 'Phone',
+                'contact-email-title': 'Email',
+                'contact-whatsapp-title': 'WhatsApp',
+                'form-title': 'Send us a message',
+                'form-name-label': 'Name *',
+                'form-email-label': 'Email *',
+                'form-phone-label': 'Phone Number *',
+                'form-message-label': 'Message',
+                'form-submit': 'Send Message',
+                'social-title': 'Follow us on social media',
+                'footer-about-title': 'Nile Investment',
+                'footer-about-text': 'Specialists in real estate marketing and investment. We provide professional consultations and excellent services.',
+                'footer-links-title': 'Quick Links',
+                'footer-link1': 'Home',
+                'footer-link2': 'About Us',
+                'footer-link3': 'Our Services',
+                'footer-link4': 'Contact Us',
+                'footer-contact-title': 'Contact Information',
+                'footer-copyright': '&copy; 2024 Nile Investment. All rights reserved.',
+                'cta-btn': 'Contact Us'
+            }
+        };
+
+        let currentLanguage = 'ar';
+
+        function toggleLanguage() {
+            currentLanguage = currentLanguage === 'ar' ? 'en' : 'ar';
+            updateLanguage();
+            localStorage.setItem('language', currentLanguage);
+        }
+
+        function updateLanguage() {
+            const lang = currentLanguage;
+            const isArabic = lang === 'ar';
+            
+            // Update HTML direction
+            document.documentElement.lang = lang;
+            document.documentElement.dir = isArabic ? 'rtl' : 'ltr';
+            
+            // Update all text elements
+            Object.keys(translations[lang]).forEach(key => {
+                const element = document.getElementById(key);
+                if (element) {
+                    element.innerHTML = translations[lang][key];
+                }
+            });
+
+            // Update language button
+            document.querySelector('.lang-toggle').textContent = isArabic ? 'EN' : 'AR';
+
+            // Update nav links
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach((link, index) => {
+                const texts = isArabic 
+                    ? ['الرئيسية', 'عن الشركة', 'الخدمات', 'اتصل بنا']
+                    : ['Home', 'About Us', 'Services', 'Contact Us'];
+                link.textContent = texts[index];
+            });
+        }
+
+        function toggleMenu() {
+            const nav = document.getElementById('nav');
+            nav.classList.toggle('show');
+        }
+
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+                document.getElementById('nav').classList.remove('show');
+            }
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            
+            if (name && email && phone) {
+                const message = currentLanguage === 'ar' 
+                    ? 'تم إرسال رسالتك بنجاح! سنتواصل معك قريباً'
+                    : 'Your message has been sent successfully! We will contact you soon';
+                alert(message);
+                event.target.reset();
+            }
+        }
+
+        // Initialize language on page load
+        window.addEventListener('load', () => {
+            const savedLanguage = localStorage.getItem('language') || 'ar';
+            currentLanguage = savedLanguage;
+            updateLanguage();
+        });
+    </script>
+</body>
+</html>
